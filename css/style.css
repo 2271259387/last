@@ -1,0 +1,110 @@
+@import url("calendar.css");
+@import url("modal.css");
+@import url("responsive.css");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* 禁用滚动条 */
+    background-color: #f4f6f9;
+    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 上半部分设计 */
+.top-section {
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.big-countdown {
+    font-size: clamp(64px, 11vh, 120px);
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    color: #0078d4;
+}
+
+.big-countdown .unit {
+    font-size: clamp(20px, 3vh, 32px);
+    margin-left: 8px;
+}
+
+.progress-wrapper {
+    width: 100%;
+    max-width: min(64vh, 95vw);
+}
+
+.progress-bar-container {
+    height: 14px;
+    background: #e0e4e8;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #81c784, #4caf50);
+    /* 绿色渐变 */
+    width: 0%;
+    border-radius: 7px;
+    transition: width 0.5s ease-out;
+}
+
+.progress-text {
+    font-size: clamp(12px, 1.8vh, 16px);
+    font-weight: 600;
+    color: #555;
+    padding: 4px 18px;
+    border-radius: 999px;
+    background: #e0e4e8;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.current-time {
+    font-size: clamp(12px, 1.8vh, 16px);
+    color: #666;
+    padding: 4px 18px;
+    border-radius: 999px;
+    background: #e0e4e8;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.settings-button {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    border: 0;
+    border-radius: 999px;
+    background: #0078d4;
+    color: #ffffff;
+    padding: 8px 14px;
+    font-size: 13px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 120, 212, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 20;
+}
+
+.settings-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 120, 212, 0.32);
+}

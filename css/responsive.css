@@ -1,0 +1,12 @@
+@media (max-width: 640px) {
+    .settings-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .modal-dialog {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,82 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.38);
+    padding: 24px;
+    z-index: 100;
+}
+
+.modal.is-open {
+    display: flex;
+}
+
+.modal-dialog {
+    width: min(420px, 100%);
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.22);
+}
+
+.modal-dialog h2 {
+    margin-bottom: 18px;
+    color: #333333;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.modal-dialog label {
+    display: block;
+    margin: 14px 0 8px;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.modal-dialog input {
+    width: 100%;
+    border: 1px solid #ccd6e0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font: inherit;
+    color: #333333;
+    outline: none;
+}
+
+.modal-dialog input:focus {
+    border-color: #0078d4;
+    box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.12);
+}
+
+.date-error {
+    min-height: 22px;
+    margin-top: 12px;
+    color: #d13438;
+    font-size: 14px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.modal-actions button {
+    border: 0;
+    border-radius: 999px;
+    background: #e8edf3;
+    color: #333333;
+    padding: 8px 16px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.modal-actions .primary-button {
+    background: #0078d4;
+    color: #ffffff;
+}
