@@ -1,12 +1,117 @@
+/*
+ * 本文件由 index.html 在 style.css 之后加载。
+ * 这样媒体查询中的同等优先级规则才不会被基础样式反向覆盖。
+ */
+
 @media (max-width: 640px) {
+    .top-section {
+        /* 给左上角固定设置按钮留出空间，避免和作者文字相撞 */
+        padding-top: 48px;
+        flex-basis: clamp(160px, 29vh, 220px);
+    }
+
     .settings-button {
         top: 10px;
         left: 10px;
-        padding: 8px 12px;
+        max-width: calc(100vw - 20px);
+        padding: 7px 12px;
         font-size: 12px;
+        min-height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .current-time {
+        max-width: calc(100vw - 24px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .bottom-section {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .grid-container {
+        max-width: calc(100vw - 16px);
+        max-height: calc(100vw - 16px);
     }
 
     .modal-dialog {
         padding: 20px;
+    }
+}
+
+/* 横向窗口、分屏、小高度窗口：优先保证上下两块永不重叠 */
+@media (max-height: 620px) {
+    .top-section {
+        flex-basis: 128px;
+        gap: 3px;
+        padding-top: 5px;
+        padding-bottom: 3px;
+    }
+
+    .author {
+        font-size: 13px;
+    }
+
+    .current-time,
+    .progress-text {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 12px;
+    }
+
+    .big-countdown {
+        font-size: clamp(38px, 10vh, 60px);
+        line-height: 0.9;
+    }
+
+    .big-countdown .unit {
+        font-size: clamp(16px, 3vh, 22px);
+    }
+
+    .bottom-section {
+        padding: 5px;
+        gap: 5px;
+    }
+
+    .progress-bar-container {
+        height: 10px;
+    }
+}
+
+/* 同时又窄又矮时，按钮占据首行，顶部内容继续下移 */
+@media (max-width: 640px) and (max-height: 620px) {
+    .top-section {
+        flex-basis: 150px;
+        padding-top: 42px;
+    }
+}
+
+@media (max-height: 430px) {
+    .top-section {
+        flex-basis: 105px;
+    }
+
+    .author {
+        display: none;
+    }
+
+    .big-countdown {
+        font-size: clamp(32px, 10vh, 44px);
+    }
+
+    .current-time {
+        padding: 2px 10px;
+    }
+
+    .bottom-section {
+        padding: 3px;
+        gap: 3px;
+    }
+
+    .progress-text {
+        padding: 2px 12px;
     }
 }
