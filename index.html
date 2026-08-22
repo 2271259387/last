@@ -6,22 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>倒数日</title>
     <link rel="stylesheet" href="css/style.css">
-
+    <!-- 响应式样式必须最后加载，避免被基础样式覆盖 -->
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
 
     <div class="top-section">
-        <br>
-        <br>
-        <br>
-        <br>
         <button class="settings-button" id="settings-button" type="button">距离 2027 年 1 月 21 日</button>
-        <div>by DongZhuo</div>
-        <br>
-        <br>
+        <div class="author">by DongZhuo</div>
         <div class="current-time">当前时间：<span id="current-time-text"></span></div>
-        
         <div class="big-countdown"><span id="days-left">--</span><span class="unit">天</span></div>
     </div>
 
