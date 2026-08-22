@@ -1,38 +1,50 @@
 /* 下半部分设计 */
 .bottom-section {
-    height: 75vh;
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2vh;
-    gap: 10px;
+    padding: clamp(6px, 1.5vh, 14px);
+    gap: clamp(6px, 1.2vh, 10px);
+    overflow: hidden;
 }
 
-/* 3x3 响应式网格 */
+/*
+ * 日历网格占用“进度条和百分比之外的剩余空间”。
+ * 关键是 flex: 1 + min-height: 0，而不是 height: 100%。
+ * 原来的 height:100% 会先吃满整个 bottom-section，随后再叠加进度条、百分比、gap，必然溢出。
+ */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(var(--grid-size, 3), 1fr);
-    grid-template-rows: repeat(var(--grid-size, 3), 1fr);
-    gap: 1.5vmin;
-    /* 确保无论怎样改变窗口比例，网格区域始终保持完美的正方形并在一屏内 */
-    width: 100%;
-    height: 100%;
-    max-width: min(64vh, 95vw);
-    max-height: min(64vh, 95vw);
+    grid-template-columns: repeat(var(--grid-size, 3), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--grid-size, 3), minmax(0, 1fr));
+    gap: clamp(4px, 1.5vmin, 12px);
+
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+    width: auto;
+    height: auto;
+    max-width: 95vw;
+    max-height: 95vw;
     aspect-ratio: 1 / 1;
+    align-self: center;
 }
 
 .month-card {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
     background: white;
-    border-radius: 16px;
+    border-radius: clamp(8px, 2vmin, 16px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     padding: 6%;
     display: flex;
     flex-direction: column;
     opacity: 0;
     animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    /* 使用容器查询以实现极其平滑的内部自适应缩放 */
     container-type: inline-size;
 }
 
@@ -49,15 +61,20 @@
 }
 
 .month-title {
+    flex: 0 0 auto;
     text-align: center;
     font-size: 7.5cqw;
     font-weight: 600;
     margin-bottom: 4cqw;
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
 .month-progress-container {
+    flex: 0 0 auto;
     width: 100%;
     height: 3cqw;
+    min-height: 2px;
     background: #e0e4e8;
     border-radius: 1.5cqw;
     margin-bottom: 5cqw;
@@ -74,19 +91,25 @@
 
 .days-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, 1fr);
     gap: 1.5cqw;
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
 }
 
 .day-cell {
+    min-width: 0;
+    min-height: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 4.5cqw;
+    line-height: 1;
     border-radius: 1.5cqw;
     cursor: default;
+    overflow: hidden;
 }
 
 .weekday {
@@ -113,7 +136,6 @@
     color: #555;
 }
 
-/* 未过完的工作日（红色） */
 .day-future {
     background: #ffb3b3;
     color: #b71c1c;
@@ -124,14 +146,12 @@
     color: #000;
     font-weight: bold;
     box-shadow: inset 0 0 0 1.5px #0078d4;
-    /* 蓝色描边 */
 }
 
 .day-today:hover {
     box-shadow: inset 0 0 0 1.5px #0078d4, 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
-/* 未过完的周六/周日（绿色） */
 .day-weekend {
     background: #b9f6ca;
     color: #1b5e20;
